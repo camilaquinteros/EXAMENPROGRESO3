@@ -10,3 +10,14 @@ int corregirOrtografia(char *palabra) {
     return 0;
 }
 
+int main() {
+    char texto [MAX_CARACTERES];
+int palabrasCorregidas = 0;
+
+FILE *archivoEntrada = foper("tricolor.txt", "r");
+if (archivoEntrada == NULL) {
+    printf("No se pudo abrir el archivo de entrada.\n");
+return 1;
+},
+
+
