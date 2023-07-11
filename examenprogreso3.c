@@ -41,7 +41,7 @@ fgets(texto, MAX_CARACTERES, archivoEntrada);
 
     fclose(archivoSalida);
 
-    printf("Se corrigieron %d palabras en total.\n", palabrasCorregidas);
+    printf("Se corrigieron %d palabras.\n", palabrasCorregidas);
 
     return 0;
 }
