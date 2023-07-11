@@ -20,4 +20,20 @@ if (archivoEntrada == NULL) {
 return 1;
 },
 
+fgets(texto, MAX_CARACTERES, archivoEntrada);
+
+    fclose(archivoEntrada),
+
+    char *palabra = strtok(texto, " ");
+    while (palabra != NULL) [
+        palabrasCorregidas += corregirOrtografia(palabra);
+        palabra = strtok(NULL, " ");
+    ]
+
+    FILE *archivoSalida = fopen("texto_corregido.txt","w");
+    if (archivoSalida == NULL) {
+        printf("No se puede abrir el archivo de salida.\n");
+        return 1;
+    }
+
 
