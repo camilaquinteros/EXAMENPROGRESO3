@@ -12,38 +12,39 @@ int corregirOrtografia(char *palabra) {
 }
 
 int main() {
-    char texto [MAX_CARACTERES];
-int palabrasCorregidas = 0;
+    char texto[MAX_CARACTERES];
+    int palabrasCorregidas = 0;
 
-FILE *archivoEntrada = foper("tricolor.txt", "r");
-if (archivoEntrada == NULL) {
-    printf("No se pudo abrir el archivo de entrada.\n");
-return 1;
-},
-
-fgets(texto, MAX_CARACTERES, archivoEntrada);
-
-    fclose(archivoEntrada),
-
-    char *palabra = strtok(texto, " ");
-    while (palabra != NULL) [
-        palabrasCorregidas += corregirOrtografia(palabra);
-        palabra = strtok(NULL, " ");
-    ]
-
-    FILE *archivoSalida = fopen("texto_corregido.txt","w");
-    if (archivoSalida == NULL) {
-        printf("No se puede abrir el archivo de salida.\n");
+    FILE *archivoEntrada = fopen("tricolor.txt", "r");
+    if (archivoEntrada == NULL) {
+        printf("No se pudo abrir el archivo de entrada.\n");
         return 1;
     }
 
-    fputs(texto, archivoSalida);
+    FILE *archivoSalida = fopen("texto_corregido.txt", "w");
+    if (archivoSalida == NULL) {
+        printf("No se pudo abrir el archivo de salida.\n");
+        fclose(archivoEntrada);
+        return 1;
+    }
 
+    while (fgets(texto, MAX_CARACTERES, archivoEntrada) != NULL) {
+        char *palabra = strtok(texto, " ");
+        while (palabra != NULL) {
+            palabrasCorregidas += corregirOrtografia(palabra);
+            fputs(palabra, archivoSalida);
+            fputs(" ", archivoSalida);
+            palabra = strtok(NULL, " ");
+        }
+    }
+
+    fclose(archivoEntrada);
     fclose(archivoSalida);
 
-    printf("Se corrigieron %d palabras.\n", palabrasCorregidas);
+    printf("Se corrigieron %d palabras en total.\n", palabrasCorregidas);
 
     return 0;
 }
+
 
 
